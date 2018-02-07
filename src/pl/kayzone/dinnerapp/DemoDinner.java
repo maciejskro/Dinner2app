@@ -5,10 +5,10 @@ import pl.kayzone.dinnerapp.control.UserManager;
 import pl.kayzone.dinnerapp.entity.MenuDinner;
 import pl.kayzone.dinnerapp.entity.User;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.SimpleFormatter;
 
 public class DemoDinner {
 
@@ -35,15 +35,27 @@ public class DemoDinner {
         } else {
             System.out.println("brak wyników wyszukania");
         }
-        List<String> menulist = new ArrayList<>();
-        for (int i =0 ; i< 6; i++) {
-            System.out.print("Pozycja menu :");
-            menulist.add(scan.nextLine());
-        }
+//        List<String> menulist = new ArrayList<>();
+//        for (int i =0 ; i< 6; i++) {
+//            System.out.print("Pozycja menu :");
+//            menulist.add(scan.nextLine());
+//        }
 
         MenuItemManager mdm = new MenuItemManager(conn);
-        mdm.add(new MenuDinner(new Date(), menulist ));
+//        MenuDinner toAdd = new MenuDinner(new Date(), menulist );
+//        mdm.add(toAdd);
 
+        Calendar c = Calendar.getInstance();
+        Date dt = null;
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-ddThh:mm:ss.sssZ");
+            dt = formatter.parse("2018-02-07T21:42:05.485Z");
+            //c.add(Calendar.DATE, 0);
+        }catch (Exception e) {
+            System.out.println("nie udało się sparsować daty");
+        }
+        System.out.println("dzień : " + dt.toString() + " " + mdm.find(dt) );
+        System.out.println("dzień : " + dt.toString() + " " + mdm.findListMenu(dt) );
 
        //DinnerManager dm = new DinnerManager();
 //        List<User> userlist = null;

@@ -1,8 +1,10 @@
 package pl.kayzone.dinnerapp.control;
 
+import org.mongodb.morphia.query.FindOptions;
 import org.mongodb.morphia.query.Query;
 import pl.kayzone.dinnerapp.entity.MenuDinner;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,18 +30,21 @@ public class MenuItemManager extends BaseManager {
         super.save(menus);
         }
 
-    public void remove() {
-
+    public void remove(MenuDinner menuDinner) {
+        this.queryMenuDinner.get();
 
     }
     public MenuDinner find (Date startDate) {
-
-        return null;
+            MenuDinner result ;
+            Query<MenuDinner> q = super.getDatastore().createQuery(MenuDinner.class);
+            result = q.field("startdate").equal(startDate).get();
+        return result;
     }
 
     public List<MenuDinner> findListMenu (Date startDate) {
-        ArrayList<MenuDinner> result = new ArrayList<>();
-
+        List<MenuDinner> result;
+        Query<MenuDinner> q = super.getDatastore().createQuery(MenuDinner.class);
+              result = q.field("startdate").greaterThanOrEq(startDate).asList() ;
         return result;
     }
 }

@@ -4,9 +4,9 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Property;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Entity(value="menudinner", noClassnameStored = true
 )
@@ -19,7 +19,7 @@ public class MenuDinner extends BaseEntity implements Serializable {
     @Property("menuItems")
     private List<String> menuitem;
 
-    public MenuDinner() {
+    MenuDinner() {
 
     }
 
@@ -55,10 +55,11 @@ public class MenuDinner extends BaseEntity implements Serializable {
     public void setMenuitem(List<String> menuitem) {
         this.menuitem = menuitem;
     }
+
     public String getWeekDayName() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(menudate);
-        cal.setFirstDayOfWeek(0);
+        cal.setFirstDayOfWeek(2);
         switch (cal.get(Calendar.DAY_OF_WEEK)) {
             case 0:
                 return "Poniedziałek";
@@ -66,11 +67,11 @@ public class MenuDinner extends BaseEntity implements Serializable {
                 return "Wtorek";
             case 2:
                 return "Środa";
-            case 4:
+            case 3:
                 return "Czwartek";
-            case 5:
+            case 4:
                 return "Piątek";
-            case 6:
+            case 5:
                 return "Sobota";
             default:
                 return "Niedziela";
@@ -83,7 +84,7 @@ public class MenuDinner extends BaseEntity implements Serializable {
         return "MenuDinner{" +
                 "weekname='" + weekNumber + '\'' +
                 ", menudate=" + menudate +
-                ", menuitem=" + menuitem +
+                ", menuitem=" + menuitem.toString() +
                 '}';
     }
 }
