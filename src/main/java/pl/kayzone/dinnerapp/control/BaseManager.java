@@ -16,15 +16,16 @@ public class BaseManager {
         morphia.mapPackage("pl.kayzone.dinnerapp.entity");
         return morphia;
     }
+
     public BaseManager() {
-        setMongo( new MongoClient() );
+        setMongo(new MongoClient());
     }
 
     public BaseManager(String conn) {
         this();
-        if( conn != null ) {
+        if (conn != null) {
             setConnectionString(conn);
-            String dbname = conn.substring(conn.lastIndexOf("/")+1, conn.length());
+            String dbname = conn.substring(conn.lastIndexOf("/") + 1, conn.length());
             System.out.println(dbname);
             this.datastore = morphia().createDatastore(getMongo(), dbname);
             datastore.ensureIndexes();
@@ -36,7 +37,8 @@ public class BaseManager {
         }
 
     }
-    public void save (Object o) {
+
+    public void save(Object o) {
         datastore.save(o);
     }
 

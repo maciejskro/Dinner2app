@@ -4,30 +4,27 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Property;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.IsoFields;
 import java.util.List;
 
-@Entity(value="menudinner", noClassnameStored = true
-)
+@Entity(value = "menudinner", noClassnameStored = true)
 public class MenuDinner extends BaseEntity implements Serializable {
 
     @Property("week")
     private Integer weekNumber;
     @Property("startdate")
-    private Date menudate;
+    private LocalDateTime menudate;
     @Property("menuItems")
     private List<String> menuitem;
 
-    MenuDinner() {
+    public MenuDinner() {
 
     }
 
-    public MenuDinner(Date menudate, List<String> menuitem) {
+    public MenuDinner(LocalDateTime menudate, List<String> menuitem) {
         this();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(menudate);
-        this.weekNumber =cal.getWeekYear()*100 + cal.get(Calendar.WEEK_OF_YEAR);
+        this.weekNumber = menudate.getYear() * 100 + menudate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         this.menudate = menudate;
         this.menuitem = menuitem;
     }
@@ -40,11 +37,11 @@ public class MenuDinner extends BaseEntity implements Serializable {
         this.weekNumber = weekNumber;
     }
 
-    public Date getMenudate() {
+    public LocalDateTime getMenudate() {
         return menudate;
     }
 
-    public void setMenudate(Date menudate) {
+    public void setMenudate(LocalDateTime menudate) {
         this.menudate = menudate;
     }
 
@@ -57,21 +54,18 @@ public class MenuDinner extends BaseEntity implements Serializable {
     }
 
     public String getWeekDayName() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(menudate);
-        cal.setFirstDayOfWeek(2);
-        switch (cal.get(Calendar.DAY_OF_WEEK)) {
+        switch (menudate.getDayOfWeek().getValue()) {
             case 0:
                 return "Poniedziałek";
             case 1:
                 return "Wtorek";
             case 2:
                 return "Środa";
-            case 3:
-                return "Czwartek";
             case 4:
-                return "Piątek";
+                return "Czwartek";
             case 5:
+                return "Piątek";
+            case 6:
                 return "Sobota";
             default:
                 return "Niedziela";
@@ -84,7 +78,7 @@ public class MenuDinner extends BaseEntity implements Serializable {
         return "MenuDinner{" +
                 "weekname='" + weekNumber + '\'' +
                 ", menudate=" + menudate +
-                ", menuitem=" + menuitem.toString() +
+                ", menuitem=" + menuitem +
                 '}';
     }
 }

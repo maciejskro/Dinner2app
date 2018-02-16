@@ -27,7 +27,7 @@ public class UserManager extends BaseManager implements Serializable {
 
     public void removeUser(List<User> users) {
         UpdateOperations<User> operationUsers;
-        for (User u : users ) {
+        for (User u : users) {
             queryUser = super.getDatastore().createQuery(User.class).field("_id").equal(u.getId());
 
             operationUsers = super.getDatastore().createUpdateOperations(User.class).set("isActive", false);
@@ -37,27 +37,28 @@ public class UserManager extends BaseManager implements Serializable {
 
     public List<User> findActive(String key, String value) {
 
-        Query<User> query =  super.getDatastore().createQuery(User.class);
-                    query.and(query.criteria("isActive").equal(true),
-                              query.criteria(key).equal(value) );
+        Query<User> query = super.getDatastore().createQuery(User.class);
+        query.and(query.criteria("isActive").equal(true),
+                query.criteria(key).equal(value));
 
         List<User> result = query.asList();
-        if ( result.size() > 0)    {
+        if (result.size() > 0) {
             return result;
         } else {
-            result.add(new User("Brak wyników wyszukania", " ", " ", "00" ));
+            result.add(new User("Brak wyników wyszukania", " ", " ", "00"));
             return result;
         }
 
     }
+
     public List<User> find(String key, String value) {
 
-        Query<User> query =  super.getDatastore().createQuery(User.class);
-                     query.criteria(key).equal(value);
-        return  query.asList();
+        Query<User> query = super.getDatastore().createQuery(User.class);
+        query.criteria(key).equal(value);
+        return query.asList();
     }
 
-    public List<User> getUsersList(){
+    public List<User> getUsersList() {
         this.queryUser = super.getDatastore().createQuery(User.class);
         return this.queryUser.asList();
     }
@@ -78,9 +79,10 @@ public class UserManager extends BaseManager implements Serializable {
         return userList;
     }
 
-    public void setUsers (ArrayList<User> user) {
+    public void setUsers(ArrayList<User> user) {
         this.userList = user;
     }
+
     public void setUserInList(User u) {
         this.userList.add(u);
     }
@@ -89,3 +91,5 @@ public class UserManager extends BaseManager implements Serializable {
         return userList.get(i);
     }
 }
+
+

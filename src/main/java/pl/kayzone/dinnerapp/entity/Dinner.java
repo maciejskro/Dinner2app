@@ -6,7 +6,7 @@ import org.mongodb.morphia.annotations.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Entity(value="dinner", noClassnameStored = true)
+@Entity(value = "dinner", noClassnameStored = true)
 public class Dinner implements Serializable {
 
     @Id
@@ -18,8 +18,8 @@ public class Dinner implements Serializable {
     private User userID;
 
 
-    public Dinner(Integer idDinner, Integer number, String description , BigDecimal price, boolean isPayed, User user ) {
-        this( number, description, price,isPayed, user );
+    public Dinner(Integer idDinner, Integer number, String description, BigDecimal price, boolean isPayed, User user) {
+        this(number, description, price, isPayed, user);
         this.idDinner = idDinner;
     }
 
@@ -54,6 +54,7 @@ public class Dinner implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public BigDecimal getPrice() {
         return price;
     }

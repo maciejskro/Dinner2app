@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>pl.kayzone.dinnerapp</groupId>
     <artifactId>Dinner2App</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.target.compile>1.8</maven.target.compile>
+        <maven.source.compile>1.8</maven.source.compile>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -19,28 +23,23 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <maven.target.compile>1.8</maven.target.compile>
-        <maven.source.compile>1.8</maven.source.compile>
-    </properties>
-
-<dependencies>
-    <dependency>
-        <groupId>org.mongodb.morphia</groupId>
-        <artifactId>morphia</artifactId>
-        <version>1.3.2</version>
-        <exclusions>
-            <exclusion>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>3.4.2</version>
-    </dependency>
-</dependencies>
+     <dependencies>
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>1.3.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+    </dependencies>
 
 </project>

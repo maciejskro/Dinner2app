@@ -1,12 +1,11 @@
 package pl.kayzone.dinnerapp.control;
 
-import org.mongodb.morphia.query.FindOptions;
 import org.mongodb.morphia.query.Query;
 import pl.kayzone.dinnerapp.entity.MenuDinner;
 
-import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MenuItemManager extends BaseManager {
@@ -23,28 +22,27 @@ public class MenuItemManager extends BaseManager {
     public void add(MenuDinner menu) {
         this.menuDinnerList.add(menu);
         super.save(menu);
-        }
+    }
 
     public void add(List<MenuDinner> menus) {
         this.menuDinnerList.addAll(menus);
         super.save(menus);
-        }
+    }
 
-    public void remove(MenuDinner menuDinner) {
-        this.queryMenuDinner.get();
+    public void remove() {
+
 
     }
-    public MenuDinner find (Date startDate) {
-            MenuDinner result ;
-            Query<MenuDinner> q = super.getDatastore().createQuery(MenuDinner.class);
-            result = q.field("startdate").equal(startDate).get();
+
+    public MenuDinner find(LocalDateTime startDate) {
+        MenuDinner result = null;
+        result = queryMenuDinner.field("week").equal(startDate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR)).get();
         return result;
     }
 
-    public List<MenuDinner> findListMenu (Date startDate) {
-        List<MenuDinner> result;
-        Query<MenuDinner> q = super.getDatastore().createQuery(MenuDinner.class);
-              result = q.field("startdate").greaterThanOrEq(startDate).asList() ;
+    public List<MenuDinner> findListMenu(LocalDateTime startDate) {
+        ArrayList<MenuDinner> result = new ArrayList<>();
+        queryMenuDinner.field("week");
         return result;
     }
 }

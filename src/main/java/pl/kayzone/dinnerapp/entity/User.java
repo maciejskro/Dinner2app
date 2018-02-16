@@ -8,7 +8,7 @@ import org.mongodb.morphia.annotations.Property;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(value="user",noClassnameStored = true)
+@Entity(value = "user", noClassnameStored = true)
 public class User extends BaseEntity implements Serializable {
 
     @Property("name")
@@ -26,7 +26,7 @@ public class User extends BaseEntity implements Serializable {
         super();
     }
 
-    public User(String userNickName,String firstName, String userSurname, String userAccount) {
+    public User(String userNickName, String firstName, String userSurname, String userAccount) {
         super();
         this.userNickName = userNickName.trim();
         this.userFirstName = firstName.trim();
@@ -36,7 +36,7 @@ public class User extends BaseEntity implements Serializable {
         this.isActive = true;
     }
 
-    public User(ObjectId id, String userNickName,String firstName, String userSurname, String userAccount, boolean isActive) {
+    public User(ObjectId id, String userNickName, String firstName, String userSurname, String userAccount, boolean isActive) {
         this(userNickName, firstName, userSurname, userAccount);
         this.id = id;
         this.isActive = isActive;
