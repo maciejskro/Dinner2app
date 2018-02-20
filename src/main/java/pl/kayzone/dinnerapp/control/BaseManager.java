@@ -4,12 +4,17 @@ import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.TimeZone;
+
 
 public class BaseManager {
 
     private String connectionString;
     private MongoClient mongo;
     private Datastore datastore;
+    private ZoneId timezone;
 
     private final Morphia morphia() {
         final Morphia morphia = new Morphia();
@@ -35,6 +40,7 @@ public class BaseManager {
             this.datastore = morphia().createDatastore(getMongo(), dbname);
             datastore.ensureIndexes();
         }
+        this.timezone = ZoneId.of("Europe/Warsaw");
 
     }
 

@@ -5,8 +5,10 @@ import org.mongodb.morphia.annotations.Property;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.IsoFields;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(value = "menudinner", noClassnameStored = true)
 public class MenuDinner extends BaseEntity implements Serializable {
@@ -54,18 +56,18 @@ public class MenuDinner extends BaseEntity implements Serializable {
     }
 
     public String getWeekDayName() {
-        switch (menudate.getDayOfWeek().getValue()) {
-            case 0:
+        switch (menudate.getDayOfWeek()) {
+            case MONDAY:
                 return "Poniedziałek";
-            case 1:
+            case TUESDAY:
                 return "Wtorek";
-            case 2:
+            case WEDNESDAY:
                 return "Środa";
-            case 4:
+            case THURSDAY:
                 return "Czwartek";
-            case 5:
+            case FRIDAY:
                 return "Piątek";
-            case 6:
+            case SATURDAY:
                 return "Sobota";
             default:
                 return "Niedziela";
@@ -76,9 +78,26 @@ public class MenuDinner extends BaseEntity implements Serializable {
     @Override
     public String toString() {
         return "MenuDinner{" +
-                "weekname='" + weekNumber + '\'' +
+                "weeknumber='" + getWeekNumber() + '\'' +
                 ", menudate=" + menudate +
+                ", dayname=" + getWeekDayName() +
                 ", menuitem=" + menuitem +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuDinner)) return false;
+        MenuDinner that = (MenuDinner) o;
+        return Objects.equals(getWeekNumber(), that.getWeekNumber()) &&
+                Objects.equals(getMenudate(), that.getMenudate()) &&
+                Objects.equals(getMenuitem(), that.getMenuitem());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getWeekNumber(), getMenudate(), getMenuitem());
     }
 }
