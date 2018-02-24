@@ -1,17 +1,22 @@
 package pl.kayzone.dinnerapp.control;
 
-import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
-import pl.kayzone.dinnerapp.entity.User;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+
+import pl.kayzone.dinnerapp.entity.User;
+
 
 public class UserManager extends BaseManager implements Serializable {
 
-    private List<User> userList;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5392846112691992011L;
+	private List<User> userList;
     private Query<User> queryUser;
 
     public void addUser(User u) {

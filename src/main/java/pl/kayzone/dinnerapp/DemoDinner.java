@@ -21,7 +21,8 @@ public class DemoDinner {
         User user;
         UserManager um = new UserManager(conn);
 
-        Scanner scan = new Scanner(System.in);
+        
+        try(Scanner scan = new Scanner(System.in) ) {
 
 //        for (int i = 0 ; i< 2; i++) {
 //            user = createUser(scan);
@@ -70,11 +71,16 @@ public class DemoDinner {
                 md.getWeekDayName()+ " \n" + md.toString() );
        // mdm.remove(md);
         System.out.println(mdm.findWeekMenuDinner(localDateTime).toString());
+        }
+        catch (Exception e) {
+        	e.printStackTrace();
+        }
 
 
     }
 
-    private static User createUser(Scanner scan) {
+    @SuppressWarnings("unused")
+	private static User createUser(Scanner scan) {
         User u;
         System.out.print("Podaj nazwę usera :");
         String name = scan.nextLine();

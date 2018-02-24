@@ -11,7 +11,11 @@ import java.util.Objects;
 @Entity(value = "user", noClassnameStored = true)
 public class User extends BaseEntity implements Serializable {
 
-    @Property("name")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5231719600490917636L;
+	@Property("name")
     private String userNickName;
     @Property("firstname")
     private String userFirstName;

@@ -9,7 +9,11 @@ import java.math.BigDecimal;
 @Entity(value = "dinner", noClassnameStored = true)
 public class Dinner implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8096499798943262086L;
+	@Id
     private Integer idDinner;
     private Integer number;
     private String description;
@@ -27,8 +31,8 @@ public class Dinner implements Serializable {
         this.number = number;
         this.description = description;
         this.price = price;
-        this.isPayed = isPayed;
-        this.userID = user;
+        this.setPayed(isPayed);
+        this.setUserID(user);
     }
 
     public Integer getIdDinner() {
@@ -62,5 +66,21 @@ public class Dinner implements Serializable {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+	public boolean isPayed() {
+		return isPayed;
+	}
+
+	public void setPayed(boolean isPayed) {
+		this.isPayed = isPayed;
+	}
+
+	public User getUserID() {
+		return userID;
+	}
+
+	public void setUserID(User userID) {
+		this.userID = userID;
+	}
 
 }

@@ -1,19 +1,22 @@
 package pl.kayzone.dinnerapp.entity;
 
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Property;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.temporal.IsoFields;
 import java.util.List;
 import java.util.Objects;
 
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Property;
+
 @Entity(value = "menudinner", noClassnameStored = true)
 public class MenuDinner extends BaseEntity implements Serializable {
 
-    @Property("week")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7364834664863008971L;
+	@Property("week")
     private Integer weekNumber;
     @Property("startdate")
     private LocalDateTime menudate;

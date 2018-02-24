@@ -10,7 +10,12 @@ import java.io.Serializable;
 
 public abstract class BaseEntity implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6930914665080289495L;
+
+	@Id
     @Property("id")
     protected ObjectId id;
 

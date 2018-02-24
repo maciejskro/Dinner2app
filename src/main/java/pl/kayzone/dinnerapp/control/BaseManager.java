@@ -1,12 +1,11 @@
 package pl.kayzone.dinnerapp.control;
 
-import com.mongodb.MongoClient;
+import java.time.ZoneId;
+
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.util.TimeZone;
+import com.mongodb.MongoClient;
 
 
 public class BaseManager {
@@ -40,7 +39,7 @@ public class BaseManager {
             this.datastore = morphia().createDatastore(getMongo(), dbname);
             datastore.ensureIndexes();
         }
-        this.timezone = ZoneId.of("Europe/Warsaw");
+        this.setTimezone(ZoneId.of("Europe/Warsaw"));
 
     }
 
@@ -67,4 +66,12 @@ public class BaseManager {
     public void setMongo(MongoClient mongo) {
         this.mongo = mongo;
     }
+
+	public ZoneId getTimezone() {
+		return timezone;
+	}
+
+	public void setTimezone(ZoneId timezone) {
+		this.timezone = timezone;
+	}
 }

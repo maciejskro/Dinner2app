@@ -1,10 +1,5 @@
 package pl.kayzone.dinnerapp.control;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
-import pl.kayzone.dinnerapp.entity.MenuDinner;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -13,6 +8,12 @@ import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+
+import pl.kayzone.dinnerapp.entity.MenuDinner;
 
 public class MenuItemManager extends BaseManager {
 
@@ -78,7 +79,8 @@ public class MenuItemManager extends BaseManager {
         return result;
     }
 
-    public void updateMenuDinner(ObjectId id , MenuDinner mdid) {
+    @SuppressWarnings("unused")
+	public void updateMenuDinner(ObjectId id , MenuDinner mdid) {
         UpdateOperations<MenuDinner> ops = getDatastore().createUpdateOperations(MenuDinner.class).inc("version");
         Query<MenuDinner> updateQuery = queryMenuDinner.field("_id").equal(id);
        // getDatastore().update();
