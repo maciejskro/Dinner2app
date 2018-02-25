@@ -2,13 +2,8 @@
 <!DOCTYPE glassfish-ejb-jar PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 EJB 3.1//EN"
         "http://glassfish.org/dtds/glassfish-ejb-jar_3_1-1.dtd">
 <glassfish-ejb-jar>
-<version-identifier>1.0</version-identifier>
-<disable-nonportable-jndi-names>true</disable-nonportable-jndi-names>
-<enterprise-beans></enterprise-beans>
-<security-role-mapping>
-	<role-name>	Administrator</role-name>
-		<principal-name>wheel</principal-name>
-	
-</security-role-mapping>
-<keep-state></keep-state>
+	<enterprise-beans>
+		<name>Dinner2</name></enterprise-beans>
+	<compatibility>compatibility</compatibility>
+	<version-identifier>version-identifier</version-identifier>
 </glassfish-ejb-jar>
