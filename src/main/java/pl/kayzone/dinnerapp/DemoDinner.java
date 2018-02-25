@@ -13,12 +13,15 @@ import java.util.Scanner;
 
 public class DemoDinner {
 
-    public static void main(String[] args) {
+    @SuppressWarnings("unused")
+	public static void main(String[] args) {
 
         String conn = "mongodb://localhost:27017/dinner";
         System.out.println(" co robimy ?  au : user add , ar : user remove  ,da : dinner add  ");
 
-        User user;
+        
+        @SuppressWarnings({ "unused" })
+		User user;
         UserManager um = new UserManager(conn);
 
         
