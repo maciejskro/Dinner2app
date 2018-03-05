@@ -1,5 +1,8 @@
 package pl.kayzone.dinnerapp.entity;
 
+import org.mongodb.morphia.annotations.Entity;
+
+@Entity(value="mntype")
 public enum MenuType {
 
     ZUPA(4.0),
