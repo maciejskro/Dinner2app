@@ -3,6 +3,7 @@ package pl.kayzone.dinnerapp.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.IsoFields;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,13 +22,13 @@ public class MenuDinner extends BaseEntity implements Serializable {
     @Property("startdate")
     private LocalDateTime menudate;
     @Property("menuItems")
-    private List<String> menuitem;
+    private HashMap<String, Double> menuitem;
 
     public MenuDinner() {
-
+    		super();
     }
 
-    public MenuDinner(LocalDateTime menudate, List<String> menuitem) {
+    public MenuDinner(LocalDateTime menudate, HashMap<String, Double> menuitem) {
         this();
         this.weekNumber = menudate.getYear() * 100 + menudate.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         this.menudate = menudate;
@@ -50,11 +51,11 @@ public class MenuDinner extends BaseEntity implements Serializable {
         this.menudate = menudate;
     }
 
-    public List<String> getMenuitem() {
+    public HashMap<String,Double> getMenuitem() {
         return menuitem;
     }
 
-    public void setMenuitem(List<String> menuitem) {
+    public void setMenuitem(HashMap<String,Double> menuitem) {
         this.menuitem = menuitem;
     }
 

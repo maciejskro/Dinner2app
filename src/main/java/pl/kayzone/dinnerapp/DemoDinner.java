@@ -8,12 +8,12 @@ import pl.kayzone.dinnerapp.entity.User;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class DemoDinner {
 
-    @SuppressWarnings("unused")
 	public static void main(String[] args) {
 
         String conn = "mongodb://localhost:27017/dinner";
@@ -39,15 +39,24 @@ public class DemoDinner {
         } else {
             System.out.println("brak wyników wyszukania");
         }
-//        List<String> menulist = new ArrayList<>();
-//        for (int i = 0; i < 6; i++) {
-//            System.out.print("Pozycja menu :");
-//            menulist.add(scan.nextLine());
-//        }
+        HashMap<String,Double> menulist = new HashMap<>();
+        for (int i = 0; i < 6; i++) {
+            System.out.print("Pozycja menu :");
+            String item = ""+(i+1)+". "+ scan.nextLine();
+            System.out.print("Cena ");
+            Double price;
+            try {
+                price = Double.parseDouble(scan.nextLine().trim().replace(',','.'));
+            } catch (Exception e) {
+                price = 0.0;
+            }
 
+            menulist.put(item, price);
+        }
+      
         //DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         MenuItemManager mdm = new MenuItemManager(conn);
-        //mdm.add(new MenuDinner(LocalDateTime.now(), menulist));
+        mdm.add(new MenuDinner(LocalDateTime.of(2018,3,5, 10,2,22,334897), menulist));
 
 
         //DinnerManager dm = new DinnerManager();
@@ -73,7 +82,7 @@ public class DemoDinner {
                 localDateTime + " to  \n" +
                 md.getWeekDayName()+ " \n" + md.toString() );
        // mdm.remove(md);
-        System.out.println(mdm.findWeekMenuDinner(localDateTime).toString());
+        System.out.println(mdm.findListMenu(localDateTime).toString());
         }
         catch (Exception e) {
         	e.printStackTrace();

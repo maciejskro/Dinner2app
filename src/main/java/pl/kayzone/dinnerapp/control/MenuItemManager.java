@@ -53,7 +53,7 @@ public class MenuItemManager extends BaseManager {
     public List<MenuDinner> findListMenu(LocalDateTime startDate) {
         ArrayList<MenuDinner> result = new ArrayList<>();
         Query<MenuDinner> query = queryMenuDinner;
-        ZonedDateTime inputDate = ZonedDateTime.of(startDate,ZoneId.of("Europe/warsaw"))
+        ZonedDateTime inputDate = ZonedDateTime.of(startDate,ZoneId.of("Europe/Warsaw"))
                     .truncatedTo(ChronoUnit.DAYS);
         query.criteria("startdate").greaterThanOrEq(inputDate)
                     .and(queryMenuDinner.criteria("week")
@@ -71,7 +71,7 @@ public class MenuItemManager extends BaseManager {
                          alfaret.add(md.getWeekDayName() + "-"
                                      +md.getMenudate().getDayOfMonth()+"."
                                      +md.getMenudate().getMonth().getValue());
-                         alfaret.addAll(md.getMenuitem());
+                         alfaret.addAll(md.getMenuitem().keySet());
                      return alfaret;
                  })
                 .flatMap(l-> l.stream())
